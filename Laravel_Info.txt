@@ -1,0 +1,199 @@
+##########################################
+##########   Guia de Laravel    ##########
+##########################################
+
+#####################################################
+--- Instalación Windows ---
+
+-> Instalar XAMPP (o PHP)
+https://www.apachefriends.org/es/index.html
+
+-> Instalar Composer
+https://getcomposer.org/
+
+-> Instalar Laravel
+A través de la consola (cmd) ir a la carpeta donde se 
+visualizan los proyectos web (en caso de xampp, la 
+ruta es: C:\xampp\htdocs) y crear un proyecto laravel
+usando composer:
+
+$ composer create-project laravel/laravel nombre_del_proyecto --prefer-dist
+
+Para verificar la instalación acceder a la dirección:
+http://localhost/nombre_del_proyecto/public 
+donde se debe ver una página de inicio de Laravel.
+
+
+#####################################################
+--- Homestead ---
+
+Se puede instalar Homestead que viene con varios paquetes
+incorporados para desarrollar.
+https://laravel.com/docs/5.5/homestead
+
+
+#####################################################
+--- IDEs Opcionales ---
+
+-> PhpStorm
+-> Sublime_Text
+
+
+
+##########################################
+##########   Comandos Laravel    #########
+##########################################
+
+#####################################################
+--- Migraciones ---
+
+OBS: Carpeta destino: <project>/database/migrations/
+
+-> En la carpeta del proyecto:
+--> Ayuda
+$ php artisan make:migration --help
+--> Crear una migracion
+$ php artisan make:migration migration_name --create=table_name
+--> Aplicar migraciones
+$ php artisan migrate
+
+OBS: Para solucionar el problema: "Specified key was too long error",
+en el archivo:
+- <project>\app\Providers\AppServiceProvider.php
+agregar:
+- use Illuminate\Support\Facades\Schema; 
+y en el método boot, agregar:
+- Schema::defaultStringLength(191);
+
+#####################################################
+--- Modelos ---
+
+OBS: Carpeta destino: <project>/app/
+
+-> En la carpeta del proyecto:
+--> Crear un modelo
+$ php artisan make:modelo model_name
+
+#####################################################
+--- Tinker ---
+
+$ php artisan tinker
+
+--> Crear variable
+>>> $user = ['name'=>'Bob Smith', 'email'=>'bob@email.com', 'password'=>bcrypt('bobpass')];
+--> Agregar a la bd
+>>> \App\User::create($user);
+--> Visualizar contenido
+>>>$users = \App\User::all();
+--> Salir de la interfaz de Tinker
+>>> exit
+
+-> Relaciones de modelos
+--> Crear una categoria
+>>> $category = new Category();
+>>> $category->name = "Noticias";
+>>> $category->save();
+>>> $article = new Article();
+>>> $article->title = "Noticias de ultima hora";
+>>> $article->content = "Contenido de la noticia";
+>>> $article->user_id = user_ID;
+>>> $article->category_id = category_ID;
+>>> $article->save();
+>>> $article->category;
+
+-> For Many to Many relation
+--> $article = App\Article::find(1);     // El "1" es el ID
+--> $article->tags()->attach(ID);
+
+-> Controller Test
+--> Nuevo usuario
+>>> $user = new App\User();
+>>> $user->name = "Juan";
+>>> $user->email = "juan@email.com";
+>>> $user->password = bcrypt("juanpass");
+>>> $user->save();
+--> Ver categorias guardadas
+>>> $category = App\Category::all();
+--> Ver articulos guardados
+>>> $article = App\Article::all();
+
+#####################################################
+--- Rutas ---
+
+-> Ubicación archivo:
+<project>/routes/web.php
+
+#####################################################
+--- Controladores ---
+
+-> Ubicación:
+<project>/app/http/controllers
+
+-> En la carpeta del proyecto:
+--> Crear un controlador
+$ php artisan make:controller controller_name
+
+-> Controller Test
+--> En archivo TestController.php   // Controller file
+use App\Article;                    // Para poder declarar articulos
+$article = Article::find($id);      // Encontrar articulos
+$article->category;                 // Establecer las relaciones
+$article->user;
+$article->tags;
+dd($article);                       // Visualizar
+
+#####################################################
+--- Vistas ---
+
+-> Ubicación:
+<project>/resources/views/
+
+-> Ubicación archivos CSS:
+<project>/public/css/
+
+
+#####################################################
+--- Comandos Artisan ---
+
+-> Ver lista de rutas
+$ php artisan route:list
+
+
+#####################################################
+--- Instalación de paquetes Laravel ---
+
+Website: packagist.org
+
+-> Laravelcollective/html
+$ composer require laravelcollective/html
+INFO: laravelcollective.com
+
+-> cviebrock/eloquent-sluggable
+$ composer require cviebrock/eloquent-sluggable
+INFO: github.com/cviebrock/eloquent-sluggable
+
+#####################################################
+--- Documentacion Laravel ---
+
+URL: laravel.com/docs/
+
+-> Migraciones:
+Database -> Migrations
+
+-> Relaciones:
+Eloquent ORM -> Relationships
+
+-> Rutas:
+The Basics -> Routing
+
+-> Controladores:
+The Basics -> Controllers
+
+-> Vistas:
+The Basics -> Views
+
+-> Blade:
+Frontend -> Blade Templates
+
+
+
