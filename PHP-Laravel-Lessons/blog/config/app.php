@@ -78,7 +78,8 @@ return [
     |
     */
 
-    'locale' => 'en',
+    //'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +92,8 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    //'fallback_locale' => 'en',
+    'fallback_locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +179,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Personals Providers
+         */
+        Laracasts\Flash\FlashServiceProvider::class,
+
     ],
 
     /*
@@ -225,6 +232,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*
+         * Personals Aliases
+         */
+        //'Flash' => Laracasts\Flash\Flash::class,
 
     ],
 

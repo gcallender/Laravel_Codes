@@ -25,13 +25,42 @@ Route::get('/', function () {
     return view('welcome2');
 });
 
-
 // Rutas para CRUD
-Route::group(['prefix' => 'admin'], function() {
-    
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+	
+	/*
+	 * Route::resource(nombre_ruta, nombre_controlador);
+	 */
     Route::resource('users', 'UsersController');
+    Route::get('users/{id}/destroy', [
+    	'uses' 	=> 'UsersController@destroy',
+    	'as'	=> 'users.destroy',
+    ]);
+
+    Route::resource('categories', 'CategoriesController');
+    Route::get('categories/{id}/destroy', [
+    	'uses' 	=> 'CategoriesController@destroy',
+    	'as'	=> 'categories.destroy',
+    ]); 
+
+    Route::resource('tags', 'TagsController');
+    Route::get('tags/{id}/destroy', [
+    	'uses' 	=> 'TagsController@destroy',
+    	'as'	=> 'tags.destroy',
+    ]); 
+
+    Route::resource('articles', 'ArticlesController');
+    Route::get('articles/{id}/destroy', [
+    	'uses' 	=> 'ArticlesController@destroy',
+    	'as'	=> 'articles.destroy',
+    ]);    
 
 });
+
+// Autenticacion
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home_custom');
 
 // Acceso a carpeta y archivo - Modo 1
 /*Route::get('/', function () {
@@ -94,4 +123,5 @@ Route::get('view/{id}', [
 	'as'	=> 'articlesView'
 ]);
 */
+
 

@@ -39,6 +39,15 @@ https://laravel.com/docs/5.5/homestead
 -> Sublime_Text
 
 
+#####################################################
+--- Paquetes para Sublime Text ---
+
+-> Emmet
+-> SublimeCodeIntel
+-> Blade Snippets
+-> Laravel 5 Snippets
+-> Laravel Blade Highlighter
+
 
 ##########################################
 ##########   Comandos Laravel    #########
@@ -132,6 +141,8 @@ $ php artisan tinker
 -> En la carpeta del proyecto:
 --> Crear un controlador
 $ php artisan make:controller controller_name
+--> Comando con metodos predefinidos
+$ php artisan make:controller controller_name --resource
 
 -> Controller Test
 --> En archivo TestController.php   // Controller file
@@ -151,13 +162,51 @@ dd($article);                       // Visualizar
 -> Ubicación archivos CSS:
 <project>/public/css/
 
+#####################################################
+--- Paginacion ---
+
+INFO: https://laravel.com/docs/5.5/pagination
+
+-> Customizing The Pagination View
+$ php artisan vendor:publish --tag=laravel-pagination
+--> Edit:
+This command will place the views in the 
+"resources/views/vendor/pagination" directory. The 
+"default.blade.php" file within this directory corresponds 
+to the default pagination view. Edit this file to modify 
+the pagination HTML.
+
+#####################################################
+--- Validacion de datos ---
+
+-> Crear archivo Request para validacion de datos
+$ php artisan make:request <request_name>
+INFO: Se crea en App/Http/Request
+
+#####################################################
+--- Traduccion de mensajes validaciones ---
+
+SITE: github.com/Laraveles/spanish
+-> Copiar carpeta "es" en "resources/lang"
+-> En "app/config/app.php" cambiar: 
+'locale' => 'en' por 'locale' => 'es' y 
+'fallback_locale' => 'en' por 'fallback_locale' => 'es'.
+
+
+#####################################################
+--- Autenticacion ---
+
+-> Crear autenticacion
+$ php artisan make:auth
+
+INFO: laravel.com/docs/5.5/authentication
+
 
 #####################################################
 --- Comandos Artisan ---
 
 -> Ver lista de rutas
 $ php artisan route:list
-
 
 #####################################################
 --- Instalación de paquetes Laravel ---
@@ -171,6 +220,11 @@ INFO: laravelcollective.com
 -> cviebrock/eloquent-sluggable
 $ composer require cviebrock/eloquent-sluggable
 INFO: github.com/cviebrock/eloquent-sluggable
+
+-> Mensajes
+--> laracasts/flash
+composer require laracasts/flash
+INFO: packagist.org/packages/laracasts/flash
 
 #####################################################
 --- Documentacion Laravel ---
@@ -194,6 +248,18 @@ The Basics -> Views
 
 -> Blade:
 Frontend -> Blade Templates
+
+-> Paginacion
+Database -> Pagination
+
+-> Validacion (Request)
+The Basics -> Validation
+
+-> Autenticacion
+Security -> Authentication
+
+-> Scope (i.e. para buscador)
+Eloquent ORM -> Getting Started -> Local Scopes
 
 
 

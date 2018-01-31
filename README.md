@@ -1,2 +1,2 @@
-# Laravel Examples
+# Laravel Codes
 Laravel Example Codes
