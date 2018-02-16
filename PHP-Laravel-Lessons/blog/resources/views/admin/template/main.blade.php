@@ -5,7 +5,9 @@
 	<title>@yield('title', 'Default') | Panel de Administración </title>
 	<link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrap/css/bootstrap.css') }} ">
 	<link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrap/css/bootstrap-grid.css') }} ">
-	<!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
+	{{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+	<link rel="stylesheet" type="text/css" href="{{ asset('plugins/chosen/chosen.css') }} ">
+	<link rel="stylesheet" type="text/css" href="{{ asset('plugins/trumbowyg/dist/ui/trumbowyg.css') }} ">
 </head>
 <body style="background-color: #BCDFFF;">
 
@@ -36,5 +38,11 @@
 
 	<script src="{{ asset('plugins/jquery/js/jquery-3.3.1.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('plugins/bootstrap/js/bootstrap.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('plugins/chosen/chosen.jquery.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('plugins/trumbowyg/dist/trumbowyg.js') }}" type="text/javascript"></script>
+
+	{{-- Yield para agregar script --}}
+	@yield('js')
+
 </body>
 </html>

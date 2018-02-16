@@ -17,7 +17,7 @@ class TagsController extends Controller
     {
         //$tags = Tag::orderBy('id', 'ASC')->paginate(4);
 
-        // Incorporacion de Scope
+        // Incorporacion de Scope para busquedas desde el modelo
         $tags = Tag::search($request->name)->orderBy('id', 'ASC')->paginate(4);
 
         return view("admin/tags/index")->with('tags', $tags);

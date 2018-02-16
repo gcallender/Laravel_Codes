@@ -7,6 +7,7 @@ use App\Category;
 use App\Tag;
 use App\Article;
 use App\Image;
+use App\Http\Requests\ArticleRequest;
 
 class ArticlesController extends Controller
 {
@@ -15,10 +16,16 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Incorporacion de Scope
-        $articles = Article::orderBy('id', 'ASC')->paginate(4);
+        // Incorporacion de Scope para busquedas desde el modelo
+        $articles = Article::search($request->title)->orderBy('id', 'ASC')->paginate(4);
+        // Llamada de relaciones
+        $articles->each(function($articles) {
+            $articles->category;
+            $articles->user;
+        });
+        //dd($articles);
 
         return view("admin/articles/index")->with('articles', $articles);
     }
@@ -45,7 +52,7 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         //dd($request->tags);
 

@@ -41,4 +41,9 @@ class Article extends Model
     public function tags() {
     	return $this->belongsToMany("App\Tag")->withTimestamps();
     }
+
+    // Incorporacion de Scope para busquedas
+    public function scopeSearch($query, $title) {
+        return $query->where('title', 'LIKE', '%' . $title . '%');
+    }    
 }

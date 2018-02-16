@@ -8,24 +8,26 @@
 	{!! Form::open(['route'=>'articles.store', 'method'=>'POST', 'files'=>true]) !!}
 		<div class="form-group">
 			{!! Form::label('title', 'Título') !!}
-			{!! Form::text('title', null, ['class'=>'form-control', 'placeholder'=>'Nombre del artículo', 'required']) !!}
+			{!! Form::text('title', null, ['class'=>'form-control', 
+				'placeholder'=>'Nombre del artículo', 'required']) !!}
 		</div>
 
 		<div class="form-group">
 			{!! Form::label('category_id', 'Categoría') !!}
 			{!! Form::select('category_id', $categories, null, 
-				['class'=>'form-control', 'placeholder'=>'Seleccione una opción ...','required']) !!}
+				['class'=>'form-control select-category', 'placeholder'=>'', 'required']) !!}
 		</div>
 
 		<div class="form-group">
 			{!! Form::label('content', 'Contenido') !!}
-			{!! Form::textarea('content', null, ['class'=>'form-control', 'placeholder'=>'Contenido ...','required']) !!}
+			{!! Form::textarea('content', null, ['class'=>'form-control textarea-content', 
+				'placeholder'=>'Contenido ...', 'required']) !!}
 		</div>
 
 		<div class="form-group">
 			{!! Form::label('tags', 'Tags') !!}
 			{!! Form::select('tags[]', $tags, null, 
-				['class'=>'form-control', 'multiple','required']) !!}
+				['class'=>'form-control select-tag', 'multiple', 'required']) !!}
 		</div>
 
 		<div class="form-group">
@@ -40,4 +42,25 @@
 
 	{!! Form::close() !!}
 
+@endsection
+
+@section('js')
+	<script>
+		$(".select-tag").chosen({
+			placeholder_text_multiple: "Seleccione un máximo de 3 tags ...",
+			max_selected_options: 3,
+			search_contains: true,
+		});
+
+		$(".select-category").chosen({				
+			search_contains: true,
+			placeholder_text_single: "Seleccione una categoria ...",
+		});		
+
+		$('.textarea-content').trumbowyg({
+			resetCss: true,
+			autogrow: true,
+		});
+
+	</script>
 @endsection

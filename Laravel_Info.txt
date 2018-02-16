@@ -1,5 +1,5 @@
 ##########################################
-##########   Guia de Laravel    ##########
+########   Instalación Laravel    ########
 ##########################################
 
 #####################################################
@@ -50,8 +50,15 @@ https://laravel.com/docs/5.5/homestead
 
 
 ##########################################
-##########   Comandos Laravel    #########
+##########   Guía de Laravel    ##########
 ##########################################
+
+#####################################################
+--- Base de Datos ---
+
+-> En el archivo .env se encuentran los datos de la 
+base de datos.
+
 
 #####################################################
 --- Migraciones ---
@@ -74,6 +81,7 @@ agregar:
 y en el método boot, agregar:
 - Schema::defaultStringLength(191);
 
+
 #####################################################
 --- Modelos ---
 
@@ -82,6 +90,7 @@ OBS: Carpeta destino: <project>/app/
 -> En la carpeta del proyecto:
 --> Crear un modelo
 $ php artisan make:modelo model_name
+
 
 #####################################################
 --- Tinker ---
@@ -126,11 +135,13 @@ $ php artisan tinker
 --> Ver articulos guardados
 >>> $article = App\Article::all();
 
+
 #####################################################
 --- Rutas ---
 
 -> Ubicación archivo:
 <project>/routes/web.php
+
 
 #####################################################
 --- Controladores ---
@@ -153,6 +164,7 @@ $article->user;
 $article->tags;
 dd($article);                       // Visualizar
 
+
 #####################################################
 --- Vistas ---
 
@@ -161,6 +173,7 @@ dd($article);                       // Visualizar
 
 -> Ubicación archivos CSS:
 <project>/public/css/
+
 
 #####################################################
 --- Paginacion ---
@@ -176,12 +189,14 @@ This command will place the views in the
 to the default pagination view. Edit this file to modify 
 the pagination HTML.
 
+
 #####################################################
 --- Validacion de datos ---
 
 -> Crear archivo Request para validacion de datos
 $ php artisan make:request <request_name>
 INFO: Se crea en App/Http/Request
+
 
 #####################################################
 --- Traduccion de mensajes validaciones ---
@@ -203,10 +218,30 @@ INFO: laravel.com/docs/5.5/authentication
 
 
 #####################################################
+--- Creacion de Scope para busquedas ---
+
+-> Editar el "modelo".
+-> Editar metodo index en el "controlador".
+-> Agregar buscador en la "vista".
+
+
+#####################################################
 --- Comandos Artisan ---
 
 -> Ver lista de rutas
 $ php artisan route:list
+
+
+#####################################################
+--- Plugins ---
+
+Ubicación: <project>/public/plugins
+
+-> Bootstrap
+-> jQuery
+-> Chosen jQuery
+-> Trumbowyg
+
 
 #####################################################
 --- Instalación de paquetes Laravel ---
@@ -226,6 +261,7 @@ INFO: github.com/cviebrock/eloquent-sluggable
 composer require laracasts/flash
 INFO: packagist.org/packages/laracasts/flash
 
+
 #####################################################
 --- Documentacion Laravel ---
 
@@ -234,7 +270,7 @@ URL: laravel.com/docs/
 -> Migraciones:
 Database -> Migrations
 
--> Relaciones:
+-> Relaciones (entre modelos):
 Eloquent ORM -> Relationships
 
 -> Rutas:
